@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="" />
+    <title>방문신청작성</title>
+    <link rel="stylesheet" href="/common/css/reset.css" />
+    <link rel="stylesheet" href="/common/css/common.css" />
+    <!-- 사이트 별 정의된 스타일시트 삽입 : 시작 -->
+    <link rel="stylesheet" href="/common/css/layout.css" />
+    <link rel="stylesheet" href="/common/css/style.css" />
+    <!-- 사이트 별 정의된 스타일시트 삽입 : 종료 -->
+
+    <!-- <link rel="stylesheet" href="/common/css/jquery.css" />
+    <link rel="stylesheet" href="/common/css/etc.css" />
+    <script src="/common/js/jquery-3.3.1.min.js">
+      </scrip>
+          <script src="/common/js/jquery-ui.min.js">
+    </script>
+    <script src="/common/js/hs_common.js?random=98"></script>
+
+    <!-- 아이비시트 추가 스크립트 -->
+    <!-- <script src="/sheet/ibleaders.js"></script>
+    <script src="/sheet/IBSheetInfo.js"></script>
+    <script src="/sheet/ibsheet.js"></script>
+    <script src="/sheet/ctrlSheet.js"></script> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    -->
+  </head>
+  <body>
+    <!-- <div id="over" class="overlay" style="display: none">Selectable text</div> -->
+
+    <div id="wrap">
+      <header id="header">
+        <h1>
+          <a href="/">
+            <img src="../common/images/img_intro_logo.png" alt="세아" />
+            <span>방문자 관리</span>
+          </a>
+        </h1>
+
+        <!-- 해당 페이지에서는 li안에 클래스 "on"이 삽입됩니다. -->
+        <nav id="gn">
+          <ul>
+            <li class="on">
+              <a href="register.html"><span>방문신청</span></a>
+            </li>
+            <li class="">
+              <a href="inquire.html"><span>방문신청조회</span></a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <div id="content_area">
+        <div class="cnt_frame">
+          <!-- content : s -->
+          <form method="POST" name="form">
+            <input type="hidden" name="transaction" />
+            <input type="hidden" name="popupCheck" />
+            <input type="hidden" name="p_main_email" />
+            <input type="hidden" name="p_visit_colName" />
+            <input type="hidden" name="p_visit_colNumber" />
+            <input type="hidden" name="p_visit_space_nm" value="" />
+            <input type="hidden" name="p_visit_purpose_nm" value="" />
+            <input type="hidden" name="p_factory_nm" value="" />
+            <input type="hidden" name="p_popupYn" value="0" />
+            <input type="hidden" name="p_popupUrl" value="" />
+
+            <div class="feedback">
+              <div class="tit_box">
+                <h2>방문신청</h2>
+              </div>
+              <div class="location">
+                <ul>
+                  <li><a href="#n" class="home">홈</a></li>
+                  <li><span>방문신청</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 사용가이드 : s -->
+            <ul class="user_guide mb5">
+              <li>
+                동행인이 3명 초과시는 추가버튼(+) 클릭 후 입력하고, 삭제시에는
+                삭제할 해당라인을 선택한 후 삭제버튼을(-) 클릭하세요.
+              </li>
+              <li>
+                "<span class="required"><em>필수입력</em></span
+                >"은(는) 필수 입력 사항 입니다.
+              </li>
+              <!-- <li><b>외국인은 생년월일란에 여권번호를 입력</b>하세요.</li>  -->
+            </ul>
+            <!-- 사용가이드 : e -->
+
+            <div class="btn_area mb20">
+              <div class="btn_right_box">
+                <a
+                  href="javascript:doAction('save');"
+                  class="btn btn_s btn_brown"
+                  >등록</a
+                >
+              </div>
+            </div>
+
+            <!-- 방문신청 : s -->
+            <div class="mb20">
+              <div class="tit_box mb3">
+                <h3>방문신청</h3>
+              </div>
+              <div class="tbl">
+                <table class="tbl_vert">
+                  <caption>
+                    방문신청 작성폼
+                  </caption>
+                  <colgroup>
+                    <col class="cols_10" />
+                    <col class="cols_auto" />
+                    <col class="cols_10" />
+                    <col class="cols_auto" />
+                    <col class="cols_10" />
+                    <col class="cols_auto" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <span class="required"><em>필수입력</em></span
+                        ><label for="p_user_nm">만날사람</label>
+                      </th>
+                      <td>
+                        <div class="ins_btn ins_btn_double">
+                          <input
+                            type="text"
+                            id="p_user_nm"
+                            class="input_txt"
+                            OnKeyDown="searchk1(event)"
+                            OnFocus="check();"
+                          />
+                          <span class="btn_group"
+                            ><a
+                              href="javascript:UserInfo('1');"
+                              class="btn btn_t btn_darkblue"
+                              >검색</a
+                            ></span
+                          >
+                        </div>
+                      </td>
+                      <th scope="row"><label for="p_team_nm">팀</label></th>
+                      <td>
+                        <input
+                          type="text"
+                          id="p_team_nm"
+                          disabled="disabled"
+                          value=""
+                          class="input_txt"
+                        />
+                      </td>
+                      <th scope="row">
+                        <label for="p_office_tel">사내전화</label>
+                      </th>
+                      <td>
+                        <input
+                          type="text"
+                          id="p_office_tel"
+                          disabled="disabled"
+                          class="input_txt"
+                        />
+                        <!-- 접견인 Hidden정보 -->
+                        <input type="hidden" id="p_sabun" value="" />
+                        <input type="hidden" id="p_user_id" value="" />
+                        <input type="hidden" id="p_team_cd" value="" />
+                        <input type="hidden" id="p_userRegion" value="" />
+                        <input type="hidden" id="p_factory" value="" />
+                        <input type="hidden" id="p_mobile_tel" value="" />
+                        <input type="hidden" id="p_email" value="" />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- 방문신청 : e -->
+
+            <!-- 방문정보 : s -->
+            <div class="mb20">
+              <div class="tit_box mb3">
+                <h3>방문정보</h3>
+              </div>
+              <div class="tbl">
+                <table class="tbl_vert">
+                  <caption>
+                    방문정보 작성폼
+                  </caption>
+                  <colgroup>
+                    <col class="cols_10" />
+                    <col class="cols_auto" />
+                    <col class="cols_10" />
+                    <col class="cols_auto" />
+                    <col class="cols_10" />
+                    <col class="cols_auto" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <span class="required"><em>필수입력</em></span
+                        ><label for="p_visit_startDate">방문기간</label>
+                      </th>
+                      <td>
+                        <input
+                          type="hidden"
+                          name="p_visit_startDate_dt"
+                          value=""
+                        />
+                        <input
+                          type="hidden"
+                          name="p_visit_endDate_dt"
+                          value=""
+                        />
+                        <ul class="ins_date">
+                          <li>
+                            <input
+                              type="text"
+                              id="p_visit_startDate"
+                              placeholder="시작일 지정"
+                              class="input_txt input_calendar"
+                              value="2022-01-19"
+                            />
+                          </li>
+                          <li>
+                            <input
+                              type="text"
+                              id="p_visit_endDate"
+                              title=""
+                              placeholder="종료일 지정"
+                              class="input_txt input_calendar"
+                              value="2022-01-19"
+                            />
+                          </li>
+                        </ul>
+                      </td>
+                      <th scope="row">
+                        <span class="required"><em>필수입력</em></span
+                        ><label for="p_visit_factory">사업장</label>
+                      </th>
+                      <td>
+                        <select id="p_visit_factory" class="select">
+                          <option value="">선택하세요</option>
+                        </select>
+                      </td>
+                      <th scope="row">
+                        <span class="required"><em>필수입력</em></span
+                        ><label for="p_visit_space">방문장소</label>
+                      </th>
+                      <td>
+                        <ul class="ins_half">
+                          <li>
+                            <select
+                              id="p_visit_space"
+                              class="select"
+                              onchange="spaceElseCheck();"
+                            >
+                              <option value="">선택하세요</option>
+                            </select>
+                          </li>
+                          <li>
+                            <input
+                              type="text"
+                              id="p_visit_spaceElse"
+                              disabled="disabled"
+                              class="input_txt"
+                            />
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <span class="required"><em>필수입력</em></span
+                        ><label for="p_visit_purpose">방문목적</label>
+                      </th>
+                      <td>
+                        <ul class="ins_half">
+                          <li>
+                            <select
+                              id="p_visit_purpose"
+                              class="select"
+                              onchange="purposeElseCheck();"
+                              OnFocus="setFocusSpace()"
+                            >
+                              <option value="">선택하세요</option>
+                            </select>
+                          </li>
+                          <li>
+                            <input
+                              type="text"
+                              id="p_visit_purposeElse"
+                              disabled="disabled"
+                              class="input_txt"
+                            />
+                          </li>
+                        </ul>
+                      </td>
+                      <!-- <th><label for="p_visit_else" ></label></th>  -->
+                      <td colspan="4">
+                        <input
+                          type="hidden"
+                          id="p_visit_else"
+                          class="input_txt"
+                          maxlength="15"
+                          disabled="disabled"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- 방문정보 : e -->
+
+            <!-- 방문객 정보 : s -->
+            <div class="mb20">
+              <div class="tit_box mb3">
+                <h3>방문객 정보</h3>
+              </div>
+              <div class="tbl">
+                <table class="tbl_vert">
+                  <caption>
+                    방문정보 작성폼
+                  </caption>
+                  <colgroup>
+                    <col class="cols_10" />
+                    <col class="cols_auto" />
+                    <col class="cols_10" />
+                    <col class="cols_auto" />
+                    <col class="cols_10" />
+                    <col class="cols_auto" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <span class="required"><em>필수입력</em></span
+                        ><label for="p_main_name">이름</label>
+                      </th>
+                      <td>
+                        <div class="ins_btn ins_btn_double">
+                          <input
+                            type="text"
+                            id="p_main_name"
+                            class="input_txt"
+                            OnKeyDown="searchk2(event)"
+                          />
+                          <span class="btn_group"
+                            ><a
+                              href="javascript:VisitSearchbtn()"
+                              OnKeyDown="searchk2(event)"
+                              class="btn btn_t btn_darkblue"
+                              >검색</a
+                            ></span
+                          >
+                        </div>
+                      </td>
+                      <th scope="row">
+                        <span class="required"><em>필수입력</em></span
+                        ><label for="p_main_birthday">생년월일</label>
+                      </th>
+                      <td>
+                        <input
+                          type="text"
+                          id="p_main_birthday"
+                          placeholder="주민번호 앞6자리"
+                          class="input_txt"
+                          onblur="chkBirthday(this)"
+                        />
+                      </td>
+                      <th scope="row">
+                        <span class="required"><em>필수입력</em></span
+                        ><label for="p_main_mobilephone">휴대폰번호</label>
+                      </th>
+                      <td>
+                        <input
+                          type="text"
+                          id="p_main_mobilephone"
+                          placeholder="'-' 제외"
+                          class="input_txt"
+                          OnKeyDown="handlerNum;"
+                          onblur="handlerNum2(this)"
+                          tabindex="17"
+                        />
+                      </td>
+                    </tr>
+                    <tr style="display: none">
+                      <th scope="row">
+                        <span class="required"><em>필수입력</em></span
+                        ><label for="p_main_tel">전화번호</label>
+                      </th>
+                      <td>
+                        <input
+                          type="text"
+                          id="p_main_tel"
+                          placeholder="'-' 제외, 지역번호 포함"
+                          class="input_txt"
+                          OnKeyDown="handlerNum();"
+                        />
+                      </td>
+                      <!-- <th scope="row"><label for="email1">이메일</label></th>  -->
+                      <td>
+                        <ul class="ins_email">
+                          <li>
+                            <input
+                              type="hidden"
+                              id="email1"
+                              class="input_txt"
+                            />
+                          </li>
+                          <li>
+                            <input
+                              type="hidden"
+                              id="email2"
+                              title=""
+                              class="input_txt"
+                            />
+                          </li>
+                          <li>
+                            <select
+                              title=""
+                              class="select"
+                              id="email_list"
+                              onChange="change_mail(this.form);"
+                              style="display: none"
+                            >
+                              <option value="self">직접입력</option>
+                              <option value="hanmail.net">hanmail.net</option>
+                              <option value="chol.com">chol.com</option>
+                              <option value="dreamwiz.com">dreamwiz.com</option>
+                              <option value="empal.com">empal.com</option>
+                              <option value="freechal.com">freechal.com</option>
+                              <option value="gmail.com">gmail.com</option>
+                              <option value="hanafos.com">hanafos.com</option>
+                              <option value="hanmir.com">hanmir.com</option>
+                              <option value="hitel.net">hitel.net</option>
+                              <option value="hotmail.com">hotmail.com</option>
+                              <option value="korea.com">korea.com</option>
+                              <option value="lycos.co.kr">lycos.co.kr</option>
+                              <option value="nate.com">nate.com</option>
+                              <option value="naver.com">naver.com</option>
+                              <option value="netian.com">netian.com</option>
+                              <option value="paran.com">paran.com</option>
+                              <option value="yahoo.com">yahoo.com</option>
+                              <option value="yahoo.co.kr">yahoo.co.kr</option>
+                            </select>
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <span class="required"><em>필수입력</em></span
+                        ><label for="p_main_gukjuk">국적</label>
+                      </th>
+                      <td>
+                        <input
+                          type="text"
+                          id="p_main_gukjuk"
+                          class="input_txt"
+                          OnkeyUp="checkLength(this,60)"
+                        />
+                      </td>
+                      <th scope="row">
+                        <span class="required"><em>필수입력</em></span
+                        ><label for="p_main_sosok">업체명</label>
+                      </th>
+                      <td>
+                        <input
+                          type="text"
+                          id="p_main_sosok"
+                          class="input_txt"
+                          OnkeyUp="checkLength(this,60)"
+                        />
+                      </td>
+                      <!-- <th scope="row" style="display:none"><label for="p_main_jikwi">직위</label></th>  -->
+                      <td colspan="2">
+                        <input
+                          type="hidden"
+                          id="p_main_jikwi"
+                          class="input_txt"
+                          OnkeyUp="checkLength(this,10)"
+                        />
+                      </td>
+                    </tr>
+                    <tr style="display: none">
+                      <th scope="row">
+                        <label for="p_main_buso">부서명</label>
+                      </th>
+                      <td>
+                        <input
+                          type="text"
+                          id="p_main_buso"
+                          class="input_txt"
+                          size="15"
+                        />
+                      </td>
+                      <th scope="row">
+                        <label for="p_main_carno">차량번호</label>
+                      </th>
+                      <td>
+                        <input
+                          type="text"
+                          id="p_main_carno"
+                          placeholder="뒤 4자리"
+                          class="input_txt"
+                          OnkeyUp="checkLength(this,4)"
+                        />
+                      </td>
+                      <th scope="row"></th>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- 방문객 정보 : e -->
+
+            <!-- 동행인 정보 : s -->
+            <div class="mb10">
+              <div class="tit_box mb3">
+                <h3>동행인 정보</h3>
+                <div class="btn_group">
+                  <a
+                    href="javascript:doAction('insert')"
+                    class="btn_icon btn_icon_add"
+                    >추가</a
+                  >
+                  <a
+                    href="javascript:doAction('delete')"
+                    class="btn_icon btn_icon_del"
+                    >삭제</a
+                  >
+                </div>
+              </div>
+              <div class="IBSheet">
+                <div id="sheetObj1"></div>
+                <div id="sheetObj2"></div>
+                <div id="sheetObj3"></div>
+                <div id="sheetObj4"></div>
+              </div>
+            </div>
+            <!-- 동행인 정보 : e -->
+
+            <!-- 버튼영역 : s -->
+            <div class="btn_area">
+              <div class="btn_right_box">
+                <a
+                  href="javascript:doAction('save');"
+                  class="btn btn_s btn_brown"
+                  >등록</a
+                >
+              </div>
+            </div>
+            <!-- 버튼영역 : e -->
+          </form>
+          <!-- content : e -->
+        </div>
+      </div>
+
+      <footer id="footer">
+        <div class="foot_logo">
+          <!-- <img
+            src="../common/images/footer_logo.gif"
+            alt="HYOSUNG | Always by your side"
+          /> -->
+        </div>
+        <div class="foot_copyright">
+          Copyright &copy; 2009 by HYOSUNG. All rights reserved
+        </div>
+      </footer>
+    </div>
+
+    <!-- <script>
+      $(window).on("load", function () {
+        selectView();
+        Sheet1.FitColWidth();
+        over.style.display = "inline";
+        //20190523 김민정 쿠키에 관계없이 열때마다 내용을 확인 하도록 함
+        //if ( getCookie("hyosung") !="done" ) {
+        URL = "../popup.jsp";
+        //settings = "dialogWidth=650px;dialogHeight=650px;toolbar=no;scrollbar=yes;toolbar=no;resizable=no;location=no;menubar=no";
+        //window.showModalDialog(URL,self,settings);
+        settings = "Width=650;Height=650;scrollbars=yes";
+        popup_info = window.open(URL, "popup_Info", settings);
+        //}else{
+        //	form.p_user_nm.focus();
+        //	over.style.display = "none";
+        //}
+      });
+    </script> -->
+
+    <!-- <form method="POST" action="/vs/AMVS1000Q.jsp" name="form2">
+      <input type="hidden" name="p_back_name" value="" />
+      <input type="hidden" name="p_back_birth" value="" />
+    </form> -->
+  </body>
+</html>

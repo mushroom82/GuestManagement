@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="" />
+    <title>방문신청조회</title>
+    <link rel="stylesheet" href="/common/css/reset.css" />
+    <link rel="stylesheet" href="/common/css/common.css" />
+    <!-- 사이트 별 정의된 스타일시트 삽입 : 시작 -->
+    <link rel="stylesheet" href="/common/css/layout.css" />
+    <link rel="stylesheet" href="/common/css/style.css" />
+    <!-- 사이트 별 정의된 스타일시트 삽입 : 종료 -->
+    <!-- <link rel="stylesheet" href="/common/css/jquery-ui.min.css" /> -->
+    <link rel="stylesheet" href="/common/css/etc.css" />
+    <!-- <script src="/common/js/jquery-3.3.1.min.js"></script>
+    <script src="/common/js/jquery-ui.min.js"></script>
+    <script src="/common/js/hs_common.js?random=86"></script> -->
+
+    <!-- 아이비시트 추가 스크립트 -->
+    <!-- <script src="/sheet/ibleaders.js"></script>
+    <script src="/sheet/IBSheetInfo.js"></script>
+    <script src="/sheet/ibsheet.js"></script>
+    <script src="/sheet/ctrlSheet.js"></script> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="wrap">
+      <header id="header">
+        <h1>
+          <a id="logo" href="/">
+            <img src="../common/images/img_intro_logo.png" alt="세아" />
+            <span>방문자 관리</span>
+          </a>
+        </h1>
+
+        <!-- 해당 페이지에서는 li안에 클래스 "on"이 삽입됩니다. -->
+        <nav id="gn">
+          <ul>
+            <li class="">
+              <a href="register.html"><span>방문신청</span></a>
+            </li>
+            <li class="on">
+              <a href="inquire.html"><span>방문신청조회</span></a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <div id="content_area">
+        <div class="cnt_frame">
+          <!-- content : s -->
+          <form method="POST" name="form">
+            <input type="hidden" name="transaction" value="L" />
+
+            <div class="feedback">
+              <div class="tit_box">
+                <h2>방문신청조회</h2>
+              </div>
+              <div class="location">
+                <ul>
+                  <li><a href="#n" class="home">홈</a></li>
+                  <li><span>방문신청조회</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="search_alone_box mb20">
+              <span class="mr20">
+                <label for="p_visiter_name"
+                  ><span class="required"><em>필수입력</em></span
+                  >방문객 이름</label
+                >
+                <input
+                  type="text"
+                  id="p_visiter_name"
+                  class="input_txt w200p"
+                />
+              </span>
+              <span class="">
+                <label for="p_visiter_birthday"
+                  ><span class="required"><em>필수입력</em></span
+                  >방문객 생년월일</label
+                >
+                <input
+                  type="text"
+                  id="p_visiter_birthday"
+                  placeholder="주민번호 앞6자리"
+                  class="input_txt w200p"
+                />
+              </span>
+              <a
+                href="javascript:doAction('Search');"
+                class="btn btn_t btn_darkblue btn_search"
+                >조회</a
+              >
+            </div>
+            <div class="mb20">
+              <div class="tit_box mb3">
+                <h3>조회결과</h3>
+              </div>
+              <div class="IBSheet">
+                <div id="sheetObj1"></div>
+              </div>
+            </div>
+          </form>
+          <!-- content : e -->
+        </div>
+      </div>
+
+      <footer id="footer">
+        <!-- <div class="foot_logo">
+          <img
+            src="../common/images/footer_logo.gif"
+            alt="HYOSUNG | Always by your side"
+          />
+        </div> -->
+        <div class="foot_copyright">
+          Copyright &copy; 2009 by HYOSUNG. All rights reserved
+        </div>
+      </footer>
+    </div>
+    <!-- <form method="POST" action="/vs/AMVS900I.jsp" name="form2">
+      <input type="hidden" name="p_number" value="" />
+      <input type="hidden" name="p_userRegion" value="" />
+      <input type="hidden" name="p_back_name" value="" />
+      <input type="hidden" name="p_back_birth" value="" />
+    </form> -->
+    <!-- <script>
+      $(window).on("load", function () {
+        redirectToHttps();
+        LoadPage();
+        firstAction();
+        Sheet1.FitColWidth();
+      });
+    </script> -->
+  </body>
+</html>

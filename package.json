@@ -1,0 +1,30 @@
+{
+  "name": "guestmanagement",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "bin": {
+    "guestmanagement": "bin/www.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node ./bin/www.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mushroom82/GuestManagement.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mushroom82/GuestManagement/issues"
+  },
+  "homepage": "https://github.com/mushroom82/GuestManagement#readme"
+}
