@@ -41,7 +41,7 @@ const process = {
 
         if (users.id.includes(id)){
             const idx = users.id.indexOf(id);
-            if (users.password[idx] === password){
+            if (users.password[idx]  === password){
                 return res.json({
                     sucess:true,
                     msg : "로그인에 성공하였습니다."
@@ -49,7 +49,7 @@ const process = {
             }
         }
         
-        return res.json({
+        return res.json({ 
             sucess:false,
             msg : "로그인에 실패하였습니다."
         });
