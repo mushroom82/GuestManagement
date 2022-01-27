@@ -14,7 +14,7 @@ const ctrl = require("./home.ctrl");
 //     res.render("home/index");
 // });
 //↓↓↓↓↓↓↓↓↓↓↓↓↓↓컨트럴러 부분 모듈화↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-router.get("/", ctrl.hello);
+router.get("/", ctrl.output.hello);
 // 루트 경로 연결=============================끝
 
 
@@ -26,8 +26,11 @@ router.get("/", ctrl.hello);
 //     res.render("home/login");
 // });
 //↓↓↓↓↓↓↓↓↓↓↓↓↓↓컨트럴러 부분 모듈화↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-router.get("/login", ctrl.login);
+router.get("/login", ctrl.output.login);
 // 로그인 경로 연결===========================끝
+
+
+router.post("/login", ctrl.process.login);
 
 
 
