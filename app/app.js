@@ -6,12 +6,12 @@ const app = express();
 
 
 // 앱 세팅
-app.set("views","./views");
+app.set("views","./src/views");
 app.set("view engine", "ejs");
 
 // 라우팅
 //미들웨어를 등록해주는 Method : use -> (./routes/home경로에 있는)index.js를 연결해주는 역할
-const home = require("./routes/home");
+const home = require("./src/routes/home");
 app.use("/", home);
 
 
