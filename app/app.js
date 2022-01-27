@@ -13,6 +13,7 @@ app.set("view engine", "ejs");
 //미들웨어를 등록해주는 Method : use -> (./routes/home경로에 있는)index.js를 연결해주는 역할
 const home = require("./src/routes/home");
 app.use("/", home);
+app.use(express.static(`${__dirname}/src/public`));
 
 
 module.exports = app;
