@@ -1,5 +1,6 @@
 "use strict";
 
+const UserStorage = require("../../models/UserStorage");
 
 // 해당 페이지를 rendering 역할을 하는 함수인 hello와 login을===시
 // output 객체로 전환==========================================직
@@ -27,33 +28,38 @@ const output = {
 // output 객체로 전환==========================================끝
 
 
-const users = {
-    id: ["kim9","psj"],
-    password:["q1w2e3","q1w2"]
-    };
-
 
 const process = {
     login:(req,res)=>{
-        // console.log(req.body);
         const id = req.body.id,
         password = req.body.password;
+
+        const users =  UserStorage.getUsers("id","password");
+
+        const response = {};
 
         if (users.id.includes(id)){
             const idx = users.id.indexOf(id);
             if (users.password[idx]  === password){
-                return res.json({
-                    sucess:true,
-                    msg : "로그인에 성공하였습니다."
-                });
+                // return res.json({
+                //     sucess:true,
+                //     msg : "로그인에 성공하였습니다."
+                // });
+                response.sucess = true;
+                response.msg = "로그인에 성공하였습니다.";
+                return res.json(response);
             }
         }
         
-        return res.json({ 
-            sucess:false,
-            msg : "로그인에 실패하였습니다."
-        });
-        // console.log(id, password);
+        // return res.json({ 
+        //     sucess:false,
+        //     msg : "로그인에 실패하였습니다."
+        // });
+        response.sucess = false;
+        response.msg = "로그인에 실패하였습니다.";
+        return res.json(response);
+
+        // // console.log(id, password);
     }
 };
 
