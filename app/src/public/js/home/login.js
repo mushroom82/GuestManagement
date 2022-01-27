@@ -1,5 +1,6 @@
 "user strict";
 
+// 해당 소스는 Front End입니다!!!
 const id = document.querySelector("#id"),
  password = document.querySelector("#password"),
  loginBtn = document.querySelector("button");
@@ -19,8 +20,15 @@ function login(){
     fetch("/login",{
         method:"POST",
         headers:{
-            "Content-Type" : "application/json"
+            "Content-Type" : "application/json",
         },
-        body:JSON.stringify(req)
-    });
+        body:JSON.stringify(req),
+    })
+    .then((res)=>res.json())
+    .then((res)=>console.log(res));
+
+    // // .then((res)=>console.log(res));
+    // //↓↓↓↓↓↓↓↓↓↓↓↓단축↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+    // .then(console.log);
+    
 }
