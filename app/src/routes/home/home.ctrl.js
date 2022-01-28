@@ -22,6 +22,9 @@ const output = {
     login : (req, res)=>{
         // res.send("여기는 루트입니다!!!!");
         res.render("home/login");
+    },
+    register : (req, res)=>{
+        res.render("home/register");
     }
 };
 // 해당 페이지를 rendering 역할을 하는 함수인 hello와 login을===

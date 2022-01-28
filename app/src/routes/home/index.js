@@ -29,7 +29,7 @@ router.get("/", ctrl.output.hello);
 router.get("/login", ctrl.output.login);
 // 로그인 경로 연결===========================끝
 
-
+router.get("/register", ctrl.output.register);
 router.post("/login", ctrl.process.login);
 
 
