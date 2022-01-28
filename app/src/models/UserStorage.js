@@ -25,8 +25,10 @@ class UserStorage {
                 return userInfo;
         }
 
-        static getUsers(...fields) {
-                // const users = this.#users;
+        static #getUsers(data, isAll, fields){
+                const users = JSON.parse(data);
+                if (isAll) return users;
+
                 const newUsers = fields.reduce((newUsers, field) => {
                         if (users.hasOwnProperty(field)) {
                                 newUsers[field] = users[field];
@@ -34,6 +36,15 @@ class UserStorage {
                         return newUsers;
                 }, {});
                 return newUsers;
+        }
+
+        static getUsers(isAll, ...fields) {
+                return fs.readFile("./src/databases/users.json")
+                        .then((data)=>{
+                                return this.#getUsers(data, isAll, fields);
+                        })
+                // .catch(err)=>console.error(); //아래로 축약
+                .catch(console.error);
         }
 
         static getUserInfo(id) {
@@ -45,15 +56,22 @@ class UserStorage {
                 .catch(console.error);
         }
 
-        static save(userInfo) {
-                // const users = this.#users;
-                users.id.push(userInfo.id);
-                users.name.push(userInfo.name);
-                users.password.push(userInfo.password);
+        static async save(userInfo) {
+                // const users =await this.getUsers("id","password","name");    //모든 값을 가져올 떄는 아래로 축약
+                const users =await this.getUsers(true);
+                // console.log(users);
+                if (users.id.includes(userInfo.id)){
+                        // throw Error("이미 존재하는 아이디입니다!");  //아래와 같이 에러메시지를 던져야 문자열로 사용자에게 뿌려짐
+                        throw "이미 존재하는 아이디입니다!";
+                }
 
-                return {
-                        sucess: true
-                };
+                // data 추가
+                users.id.push(userInfo.id);
+                users.password.push(userInfo.password);
+                users.name.push(userInfo.name);
+                fs.writeFile("./src/databases/users.json", JSON.stringify(users));
+
+                return {sucess:true};
         }
 }
 
