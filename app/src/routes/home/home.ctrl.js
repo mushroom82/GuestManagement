@@ -33,10 +33,10 @@ const output = {
 
 
 const process = {
-    login:(req,res)=>{
+    login:async(req,res)=>{
         const user = new User(req.body);
-        const response = user.login();
-        console.log(response);
+        const response =await user.login();
+        // console.log(response);
         return res.json(response);
 
         // user.js로 이동=======================================시작

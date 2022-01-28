@@ -10,10 +10,7 @@ loginBtn.addEventListener("click",login);
 
 function login(){
 
-    const req = {
-        id : id.value,
-        password : password.value
-    }    
+    const req = {id : id.value,password : password.value}    
     // console.log(req,JSON.stringify(req));
     // console.log(JSON.stringify(req));
 
