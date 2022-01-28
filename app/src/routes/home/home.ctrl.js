@@ -1,6 +1,6 @@
 "use strict";
 
-const UserStorage = require("../../models/UserStorage");
+const User = require("../../models/user");
 
 // 해당 페이지를 rendering 역할을 하는 함수인 hello와 login을===시
 // output 객체로 전환==========================================직
@@ -31,35 +31,42 @@ const output = {
 
 const process = {
     login:(req,res)=>{
-        const id = req.body.id,
-        password = req.body.password;
-
-        const users =  UserStorage.getUsers("id","password");
-
-        const response = {};
-
-        if (users.id.includes(id)){
-            const idx = users.id.indexOf(id);
-            if (users.password[idx]  === password){
-                // return res.json({
-                //     sucess:true,
-                //     msg : "로그인에 성공하였습니다."
-                // });
-                response.sucess = true;
-                response.msg = "로그인에 성공하였습니다.";
-                return res.json(response);
-            }
-        }
-        
-        // return res.json({ 
-        //     sucess:false,
-        //     msg : "로그인에 실패하였습니다."
-        // });
-        response.sucess = false;
-        response.msg = "로그인에 실패하였습니다.";
+        const user = new User(req.body);
+        const response = user.login();
+        console.log(response);
         return res.json(response);
 
-        // // console.log(id, password);
+        // user.js로 이동=======================================시작
+        // const id = req.body.id,
+        // password = req.body.password;
+
+        // const users =  UserStorage.getUsers("id","password");
+
+        // const response = {};
+
+        // if (users.id.includes(id)){
+        //     const idx = users.id.indexOf(id);
+        //     if (users.password[idx]  === password){
+        //         // return res.json({
+        //         //     sucess:true,
+        //         //     msg : "로그인에 성공하였습니다."
+        //         // });
+        //         response.sucess = true;
+        //         response.msg = "로그인에 성공하였습니다.";
+        //         return res.json(response);
+        //     }
+        // }
+        
+        // // return res.json({ 
+        // //     sucess:false,
+        // //     msg : "로그인에 실패하였습니다."
+        // // });
+        // response.sucess = false;
+        // response.msg = "로그인에 실패하였습니다.";
+        // return res.json(response);
+
+        // // // console.log(id, password);
+        // user.js로 이동=======================================끝
     }
 };
 
