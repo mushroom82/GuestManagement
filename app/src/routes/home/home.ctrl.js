@@ -33,7 +33,7 @@ const output = {
 
 
 const process = {
-    login:async(req,res)=>{
+    login: async(req,res)=>{
         const user = new User(req.body);
         const response =await user.login();
         // console.log(response);
@@ -51,20 +51,20 @@ const process = {
         //     const idx = users.id.indexOf(id);
         //     if (users.password[idx]  === password){
         //         // return res.json({
-        //         //     sucess:true,
+        //         //     c:true,
         //         //     msg : "로그인에 성공하였습니다."
         //         // });
-        //         response.sucess = true;
+        //         response.success = true;
         //         response.msg = "로그인에 성공하였습니다.";
         //         return res.json(response);
         //     }
         // }
         
         // // return res.json({ 
-        // //     sucess:false,
+        // //     success:false,
         // //     msg : "로그인에 실패하였습니다."
         // // });
-        // response.sucess = false;
+        // response.success = false;
         // response.msg = "로그인에 실패하였습니다.";
         // return res.json(response);
 
@@ -74,7 +74,7 @@ const process = {
     register:async(req,res)=>{
         const user = new User(req.body);
         const response = await user.register();
-        // console.log(response);
+        console.log(response);
         return res.json(response);
     }
 };
